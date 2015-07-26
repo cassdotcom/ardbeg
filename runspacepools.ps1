@@ -8,14 +8,8 @@ function Update-Window {
             $syncHash.textbox.SelectAll()
             $syncHash.tsel = $syncHash.TextBox.Selection
             $syncHash.TextBox.Selection.Text = "$(Get-Date -Format "yyyy-MM-dd hh:mm:ss"):`t"
-            <#
-			$syncHash.textbox.selection = ""
-			$syncHash.TextBox.AppendText($content)
-#>
 		} else {
-			#$syncHash.TextBox.AppendText("`r$($content)")
-			$syncHash.textbox.SelectAll()
-			$syncHash.textbox.selection = ""
+			$syncHash.TextBox.AppendText("$($content)")
 		}
     }
     )
