@@ -1,0 +1,245 @@
+; ***Edit next 3 lines appropriately anything after ";" on a line is treated as comment 
+;Created by pianoboy 13/12/2014 
+;WPFRunspace.inf
+;Setup .inf to install WPFRunspace files
+; Now go down to section [Inf.CopyPowershell] for further edits unless you want to change a step in the install.
+
+[Version]
+;xp and up platform
+;signature="$Windows NT$"       
+;cross platform
+Signature=$CHICAGO$
+; install, must initiate install via script.
+AdvancedINF=2.5,%BadAdvpackVer% 
+
+
+
+
+[DefaultInstall]
+;BitReg=Bits.Set
+RunPreSetupCommands=Check.ShellNew
+
+
+[Check.ShellNew]
+powershell.exe -windowstyle hidden -noprofile -command %SCRIPTBLOCK%
+
+[ShellNew.NotExist]
+BeginPrompt=Prompt.ShellNew.NotExist
+AddReg=Reg.Settings
+AddReg=Reg.Uninstall
+CopyFiles=Inf.CopyUninstall
+CopyFiles=Inf.CopyPowershell
+CopyFiles=Inf.CopyExample
+EndPrompt=Prompt.Installed
+
+[Continue.Install]
+BeginPrompt=Prompt.Install
+AddReg=Reg.Settings
+AddReg=Reg.Uninstall
+CopyFiles=Inf.CopyUninstall
+CopyFiles=Inf.CopyPowershell
+CopyFiles=Inf.CopyExample
+EndPrompt=Prompt.Installed
+
+
+
+[DefaultUninstall]
+BeginPrompt=Prompt.Uninstall
+;BitReg=Bits.Clear
+DelReg=Reg.Settings
+DelReg=Reg.Uninstall
+DelFiles=Inf.CopyUninstall
+DelFiles=Inf.CopyPowershell
+DelFiles=Inf.CopyExample
+DelFiles=Inf.DelFiles
+DelDirs=Delete.Folders 
+EndPrompt=Prompt.Uninstalled
+
+
+;**************************************************************************
+; Displayed at start of install if ShellNew entry exists
+;
+[Prompt.ShellNew.NotExist]
+Prompt= "An entry already exists in the registry to add %NAME%.If you continue any existing menu item will be overwritten. Do you wish to continue?"
+Title=%NAME%
+ButtonType=YESNO
+
+[Prompt.Install]
+Prompt= "Do you wish to install %NAME%?"
+Title=%NAME%
+ButtonType=YESNO
+
+[Prompt.UnInstall]
+Prompt= "Do you wish to Uninstall %NAME%?"
+Title=%NAME%
+ButtonType=YESNO
+
+
+[Prompt.Installed]
+Prompt= "%NAME% has been succesfully installed."
+Title=%NAME%
+ButtonType=OKCANC
+
+[Prompt.Uninstalled]
+Prompt= "%NAME% has been succesfully un-installed."
+Title=%NAME%
+ButtonType=OKCANC
+
+
+
+[Reg.Settings]
+;  Valid setting format ROOT,SUBKEY[,NAME[,FLAG[,DATA]]]
+;
+; Valid root abbreviations are:
+; HKCR = Hkey_Classes_Root
+; HKCU = Hkey_Current_User
+; HKLM = Hkey_Local_Machine
+; HKU = Hkey_Users
+;
+;
+; FLAG:
+;
+;	0x00000 - REG_SZ
+;	0x00001 - REG_BINARY
+;	0x10000 - REG_MULTI_SZ
+;	0x20000 - REG_EXPAND_SZ
+;	0x10001 - REG_DWORD
+;	0x20001 - REG_NONE
+;
+;
+
+
+[Bits.Set]
+;
+; ROOT,SUBKEY,NAME,FLAG,MASK,BYTE
+;
+; FLAG:
+;
+;	0x00000 - Clear bits in mask
+;	0x00001 - Set bits in mask
+
+[Bits.Clear]
+; ROOT,SUBKEY,NAME,FLAG,MASK,BYTE
+;
+; FLAG:
+;
+;	0x00000 - Clear bits in mask
+;	0x00001 - Set bits in mask
+
+
+
+[Reg.Uninstall]
+%HIVE%,Software\Microsoft\Windows\CurrentVersion\Uninstall\%NAME%
+%HIVE%,Software\Microsoft\Windows\CurrentVersion\Uninstall\%NAME%,DisplayName\
+,,"%NAME%"
+; Note: use "\" to exten command on new line
+; Note: spaces are ok in path for rundl32 command 
+%HIVE%,Software\Microsoft\Windows\CurrentVersion\Uninstall\%NAME%,UninstallString\
+,,"Rundll32.exe advpack.dll,LaunchINFSection "%16410%\%UNINSTALLFOLDER%\%FILENAME%", DefaultUninstall
+%HIVE%,Software\Microsoft\Windows\CurrentVersion\Uninstall\%NAME%,Publisher\
+,,"%PUBLISHER%"
+
+
+
+
+; ROOT:
+;
+;	HKCU
+;	HKLM
+
+[Inf.CopyUninstall]
+%FILENAME%
+
+
+[Inf.CopyPowershell]
+; Edit files to be copied
+WPFRunspace.psd1
+WPFRunspace.Dll.psm1
+BackgroundWorker.cs
+WPFRunspaceHelp.chm
+
+[Inf.CopyExample]
+Invoke-wpfWorkerExample.ps1
+Invoke-FormWorkerExample.ps1
+
+[Inf.DelFiles]
+WPFRunspace.dll
+
+[DestinationDirs]
+; Destination directory - edit as required 
+; Note below 16410 is the user appdata folder,  this is where the install/uninstall files will go
+; anything between % % is an expand string defined in strings section further 
+Inf.CopyUninstall=16410,"%UNINSTALLFOLDER%"  
+Inf.CopyPowershell=16389,"%POWERSHELLFOLDER%"       ; 16389 is %systemroot%\system32, 
+Inf.CopyExample=16389,"%POWERSHELLFOLDER%\Example" 
+Inf.DelFiles=16389,"%POWERSHELLFOLDER%"       ; 16389 is %systemroot%\system32, 
+
+[Delete.Folders]
+; These are folders to be deleted in an uninstall
+%16410%\%UNINSTALLFOLDER%
+%16389%\%POWERSHELLFOLDER%
+%16389%\%POWERSHELLFOLDER%\Example
+
+; Common DIRID numbers just for convenience when editing
+;
+; 	01 - SourceDrive:\pathname 
+;	10 - %SystemRoot%
+;	11 - %SystemRoot%\System32
+;	12 - Drivers directory %windir%\system32\drivers for NT-based platforms
+;	17 - %SystemRoot%\Inf
+; 	18 - Help directory 
+; 	20 - Fonts directory 
+; 	21 - Viewers directory 
+; 	23 - Color directory (ICM) (not used for installing printer drivers) 
+; 	24 - Root directory of the system disk. eg> C:\
+; 	25 - Shared directory 
+;	30 - Root directory of the boot disk, also known as "ARC system partition,"
+;	50 - System directory for NT-based operating systems. This is equivalent to %windir%\system (NT-based systems only). 
+;	51 - Spool directory (not used for installing printer drivers see Printer Dirids) 
+; 	52 - Spool drivers directory (not used for installing printer drivers
+;	53 - %UserProfile%
+;	54 - %SystemDrive%
+; 	55 - Print processors directory (not used for installing printer drivers) 
+;	-1 - Absolute path
+;
+; Value Shell Special Folder 
+;
+; Add 16384 to CSIDL
+; 16389 User\Personal
+; 16405 User\Templates
+; 16406 All Users\Start Menu 
+; 16407 All Users\Start Menu\Programs 
+; 16408 All Users\Start Menu\Programs\Startup 
+; 16409 All Users\Desktop
+; 16410 User\AppData   
+; 16415 All Users\Favorites 
+; 16419 All Users\Application Data 
+; 16422 Program Files 
+; 16427 Program Files\Common 
+; 16429 All Users\Templates 
+; 16430 All Users\Documents 
+
+
+
+[SourceDisksNames]
+55=%DISKNAME%
+
+[SourceDisksFiles]
+%FILENAME%=55
+Invoke-wpfWorkerExample.ps1=55,"Example",
+Invoke-FormWorkerExample.ps1=55,"Example",
+
+[Strings]
+;Editing these mostly controls the install
+BadAdvpackVer="Incorrect version of advpack.dll. Please get new version from our web site." ;error message
+NAME = "WPFRunspace" ; Programs and Features  display name
+DISKNAME = "WPFRunspace.BackgroundWorker"
+PUBLISHER = "Pianoboy" ; Programs and Features publisher
+FILENAME = "WPFRunspace.inf" ; The name of this file
+UNINSTALLFOLDER = "Pianoboy\WPFRunspace\Registry" ; Registry location where this file will be copied
+POWERSHELLFOLDER = "WindowsPowershell\Modules\WPFRunspace" ;The location of the powershell module
+; Powershell scriptblock to check if already installed - need to manually change hive here
+SCRIPTBLOCK = "&{if($(test-path 'HKCU:Software\Microsoft\Windows\CurrentVersion\Uninstall\WPFRunspace')) " \
+		"{ start-process -FilePath Rundll32.exe -ArgumentList 'advpack.dll , LaunchINFSection  WPFRunspace.inf, ShellNew.NotExist'; } " \
+		"else{start-process -FilePath Rundll32.exe -ArgumentList 'advpack.dll , LaunchINFSection  WPFRunspace.inf, Continue.Install';};}"
+HIVE = "HKCU"  ; change to HKCU if installing to dir that does not require Admin rights
