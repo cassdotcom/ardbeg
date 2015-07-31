@@ -1,0 +1,9 @@
+ScottishParliamentaryRegion1999Code,ScottishParliamentaryRegion1999Name,NRSoldScottishParliamentaryRegion1999Code
+S17000001,Central Scotland,01
+S17000002,Glasgow,02
+S17000003,Highlands and Islands,03
+S17000004,Lothians,04
+S17000005,Mid Scotland and Fife,05
+S17000006,North East Scotland,06
+S17000007,South of Scotland,07
+S17000008,West of Scotland,08

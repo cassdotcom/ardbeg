@@ -1,0 +1,74 @@
+ScottishParliamentaryConstituency1999Code,ScottishParliamentaryConstituency1999Name,NRSoldScottishParliamentaryConstituency1999Code
+S16000058,North East Fife,58
+S16000059,North Tayside,59
+S16000060,Ochil,60
+S16000061,Orkney Islands,61
+S16000062,Paisley North,62
+S16000063,Paisley South,63
+S16000064,Perth,64
+S16000065,Ross, Skye and Inverness West,65
+S16000066,Roxburgh and Berwickshire,66
+S16000067,Shetland Islands,67
+S16000068,Stirling,68
+S16000069,Strathkelvin and Bearsden,69
+S16000070,Tweeddale, Ettrick and Lauderdale,70
+S16000071,West Aberdeenshire and Kincardine,71
+S16000072,West Renfrewshire,72
+S16000073,Western Isles,73
+S16000001,Aberdeen Central,01
+S16000002,Aberdeen North,02
+S16000003,Aberdeen South,03
+S16000004,Airdrie and Shotts,04
+S16000005,Angus,05
+S16000006,Argyll and Bute,06
+S16000007,Ayr,07
+S16000008,Banff and Buchan,08
+S16000009,Caithness, Sutherland and Easter Ross,09
+S16000010,Carrick, Cumnock and Doon Valley,10
+S16000011,Central Fife,11
+S16000012,Clydebank and Milngavie,12
+S16000013,Clydesdale,13
+S16000014,Coatbridge and Chryston,14
+S16000015,Cumbernauld and Kilsyth,15
+S16000016,Cunninghame North,16
+S16000017,Cunninghame South,17
+S16000018,Dumbarton,18
+S16000019,Dumfries,19
+S16000020,Dundee East,20
+S16000021,Dundee West,21
+S16000022,Dunfermline East,22
+S16000023,Dunfermline West,23
+S16000024,East Kilbride,24
+S16000025,East Lothian,25
+S16000026,Eastwood,26
+S16000027,Edinburgh Central,27
+S16000028,Edinburgh East and Musselburgh,28
+S16000029,Edinburgh North and Leith,29
+S16000030,Edinburgh Pentlands,30
+S16000031,Edinburgh South,31
+S16000032,Edinburgh West,32
+S16000033,Falkirk East,33
+S16000034,Falkirk West,34
+S16000035,Galloway and Upper Nithsdale,35
+S16000036,Glasgow Anniesland,36
+S16000037,Glasgow Baillieston,37
+S16000038,Glasgow Cathcart,38
+S16000039,Glasgow Govan,39
+S16000040,Glasgow Kelvin,40
+S16000041,Glasgow Maryhill,41
+S16000042,Glasgow Pollok,42
+S16000043,Glasgow Rutherglen,43
+S16000044,Glasgow Shettleston,44
+S16000045,Glasgow Springburn,45
+S16000046,Gordon,46
+S16000047,Greenock and Inverclyde,47
+S16000048,Hamilton North and Bellshill,48
+S16000049,Hamilton South,49
+S16000050,Inverness East, Nairn and Lochaber,50
+S16000051,Kilmarnock and Loudoun,51
+S16000052,Kirkcaldy,52
+S16000053,Linlithgow,53
+S16000054,Livingston,54
+S16000055,Midlothian,55
+S16000056,Moray,56
+S16000057,Motherwell and Wishaw,57

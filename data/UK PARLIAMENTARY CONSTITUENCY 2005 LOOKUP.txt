@@ -1,0 +1,60 @@
+UKParliamentaryConstituency2005Code,UKParliamentaryConstituency2005Name,NRSoldUKParliamentaryConstituency2005Code
+S14000001,Aberdeen North,01
+S14000002,Aberdeen South,02
+S14000003,Airdrie and Shotts,03
+S14000004,Angus,04
+S14000005,Argyll and Bute,05
+S14000006,Ayr, Carrick and Cumnock,06
+S14000007,Banff and Buchan,07
+S14000008,Berwickshire, Roxburgh and Selkirk,08
+S14000009,Caithness, Sutherland and Easter Ross,09
+S14000010,Central Ayrshire,10
+S14000011,Coatbridge, Chryston and Bellshill,11
+S14000012,Cumbernauld, Kilsyth and Kirkintilloch East,12
+S14000013,Dumfries and Galloway,13
+S14000014,Dumfriesshire, Clydesdale and Tweeddale,14
+S14000015,Dundee East,15
+S14000016,Dundee West,16
+S14000017,Dunfermline and West Fife,17
+S14000018,East Dunbartonshire,18
+S14000019,East Kilbride, Strathaven and Lesmahagow,19
+S14000020,East Lothian,20
+S14000021,East Renfrewshire,21
+S14000022,Edinburgh East,22
+S14000023,Edinburgh North and Leith,23
+S14000024,Edinburgh South,24
+S14000025,Edinburgh South West,25
+S14000026,Edinburgh West,26
+S14000027,Na h-Eileanan an Iar,47
+S14000028,Falkirk,27
+S14000029,Glasgow Central,28
+S14000030,Glasgow East,29
+S14000031,Glasgow North,30
+S14000032,Glasgow North East,31
+S14000033,Glasgow North West,32
+S14000034,Glasgow South,33
+S14000035,Glasgow South West,34
+S14000036,Glenrothes,35
+S14000037,Gordon,36
+S14000038,Inverclyde,37
+S14000039,Inverness, Nairn, Badenoch and Strathspey,38
+S14000040,Kilmarnock and Loudoun,39
+S14000041,Kirkcaldy and Cowdenbeath,40
+S14000042,Lanark and Hamilton East,41
+S14000043,Linlithgow and East Falkirk,42
+S14000044,Livingston,43
+S14000045,Midlothian,44
+S14000046,Moray,45
+S14000047,Motherwell and Wishaw,46
+S14000048,North Ayrshire and Arran,48
+S14000049,North East Fife,49
+S14000050,Ochil and South Perthshire,50
+S14000051,Orkney and Shetland,51
+S14000052,Paisley and Renfrewshire North,52
+S14000053,Paisley and Renfrewshire South,53
+S14000054,Perth and North Perthshire,54
+S14000055,Ross, Skye and Lochaber,55
+S14000056,Rutherglen and Hamilton West,56
+S14000057,Stirling,57
+S14000058,West Aberdeenshire and Kincardine,58
+S14000059,West Dunbartonshire,59
