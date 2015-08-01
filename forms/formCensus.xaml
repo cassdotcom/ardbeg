@@ -1,0 +1,47 @@
+<Window
+	x:Name="formCensus"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Census Form"
+	Width="684" Height="508" Background="#FFBCC1F7"
+    WindowStartupLocation = "CenterScreen"
+    ShowInTaskbar = "True">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="110*"/>
+			<RowDefinition Height="371*"/>
+		</Grid.RowDefinitions>
+		<DockPanel LastChildFill="False" Margin="10,100,516,0" Background="#FFDBDDF1" Height="268" VerticalAlignment="Top" Grid.RowSpan="2">
+			<Border BorderBrush="#FF250DBB" BorderThickness="1" Height="268" VerticalAlignment="Top" Width="150"/>
+		</DockPanel>
+		<DockPanel LastChildFill="False" Margin="170,100,10,0" Background="#FFDBDDF1" Height="268" VerticalAlignment="Top" Grid.RowSpan="2">
+			<Border BorderBrush="#FF250DBB" BorderThickness="1" Height="268" VerticalAlignment="Top" Width="495"/>
+		</DockPanel>
+		<DockPanel LastChildFill="False" Margin="10,280,10,0" Background="#FFDBDDF1" Height="56" VerticalAlignment="Top" Grid.Row="1">
+			<Border BorderBrush="#FF250DBB" BorderThickness="1" Height="56" VerticalAlignment="Top" Width="655"/>
+		</DockPanel>
+		<Button Content="AAAA" Name="btA" HorizontalAlignment="Left" Margin="20,289.723,0,0" VerticalAlignment="Top" Width="120" Height="35.277" Grid.Row="1"/>
+		<Button Content="BBBB" Name="btB" HorizontalAlignment="Left" Margin="155,289.723,0,0" VerticalAlignment="Top" Width="120" Height="35.277" Grid.Row="1"/>
+		<Button Content="CCCC" Name="btC" HorizontalAlignment="Left" Margin="290,289.723,0,0" VerticalAlignment="Top" Width="120" Height="35.277" Grid.Row="1"/>
+		<Button Content="DDDD" Name="btD" HorizontalAlignment="Left" Margin="430,289.723,0,0" VerticalAlignment="Top" Width="120" Height="35.277" Grid.Row="1"/>
+		<Button Content="Exit" Name="btExit" HorizontalAlignment="Left" Margin="570,289.723,0,0" VerticalAlignment="Top" Width="50" Height="35.277" Grid.Row="1"/>
+		<ComboBox Name="cbA" HorizontalAlignment="Left" Margin="20,85,0,0" VerticalAlignment="Top" Width="130" Grid.Row="1"/>
+		<Label Name="laA" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="45" Width="155"/>
+		<Label Name="laB" Content="Label" HorizontalAlignment="Left" Margin="170,10,0,0" VerticalAlignment="Top" Height="45" Width="390" Background="{x:Null}"/>
+		<Image Name="imA" Margin="566,10,10,15" ScrollViewer.VerticalScrollBarVisibility="Disabled" Source="sgn.png"/>
+		<StatusBar Name="sbA" Margin="0,346,0,0" Background="#FFDBDDF1" Grid.Row="1"/>
+		<TextBox Name="tbA" HorizontalAlignment="Left" Height="23" Margin="20,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="130" Grid.Row="1"/>
+		<RichTextBox Name="rtbA" Height="220" Margin="175,0,16,0" VerticalAlignment="Top" FontSize="12" Grid.Row="1">
+			<FlowDocument>
+				<Paragraph><Run Text="Box A"/></Paragraph>
+			</FlowDocument>
+		</RichTextBox>
+		<RichTextBox Name="rtbB" Height="25" Margin="175,227.001,16,0" VerticalAlignment="Top" FontSize="13.333" Grid.Row="1">
+			<FlowDocument>
+				<Paragraph><Run Text="Box B"/></Paragraph>
+			</FlowDocument>
+		</RichTextBox>
+		<ProgressBar Margin="10,265,10,96" Grid.Row="1" Background="#FFDBDDF1"/>
+	</Grid>
+</Window>
