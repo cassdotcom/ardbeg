@@ -1,25 +1,25 @@
 #region HEADER
 ###########################################################
-# .FILE		:
-# .AUTHOR  	:
-# .DATE    	:
+# .FILE		: wpfFormAC.ps1
+# .AUTHOR  	: A.Cassidy
+# .DATE    	: 2015-08-06
 # .EDIT    	: 
-# .FILE_ID	:
-# .COMMENT 	:
-# .INPUT	: 
-# .OUTPUT	:
+# .FILE_ID	: 
+# .COMMENT 	: Responsive GUI, requires WPFRunspace
+# .INPUT	: None
+# .OUTPUT	: None
 #			  	
 #           
-# .VERSION :
+# .VERSION : 1.0
 ###########################################################
 ###########################################################
 # .CHANGELOG
-# 
+# 2015-08-06 -- 1.0 -- Initial Release
 #
 #
 ###########################################################
 # .INSTRUCTIONS FOR USE
-#
+# Run as scriptfile wpfFormAC.ps1
 #
 #
 ###########################################################
@@ -34,8 +34,8 @@
 
 
 
-#region CONSTANTS
 #==========================================================
+#region CONSTANTS
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 # Add accelerators for wpf (if you don't wish to use fully qualified paths).
 # To prevent name conflicts you can use the -Prefix switch that will add 'Wpf.' prefix to accelerator.
@@ -52,6 +52,8 @@ $BUTTON_2_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide2.ps1"
 $BUTTON_3_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide3.ps1"
 $BUTTON_4_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide4.ps1"
 
+$btnSide3Done_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide3Data.ps1"
+
 $btnSide1Click_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide1Click.ps1"
 $btnSide2Click_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide2Click.ps1"
 $btnSide3Click_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide3Click.ps1"
@@ -63,44 +65,42 @@ $btnTBSearchClick_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnTBSearchC
 $btnTBSearchData_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnTBSearchData.ps1"
 $btnSearchDone_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnTBSearchDone.ps1"
 #..........................................................
-#==========================================================
 #endregion CONSTANTS
-
-
-
-#region XAML
 #==========================================================
+
+
+#==========================================================
+#region XAML
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $xaml = [io.file]::ReadAllText($XAML_FILE)
 #..........................................................
-#==========================================================
 #endregion XAML
-
-
-
-
-#region BUTTON_FUNCTIONS
 #==========================================================
+
+
+
+
+#==========================================================
+#region BUTTON_FUNCTIONS
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 [scriptblock]$scriptBtnSide1 = Get-Command $BUTTON_1_FILE | select -ExpandProperty ScriptBlock
 [scriptblock]$scriptBtnSide2 = Get-Command $BUTTON_2_FILE | select -ExpandProperty ScriptBlock
+[scriptblock]$scriptBtnSide3 = Get-Command $BUTTON_3_FILE | select -ExpandProperty ScriptBlock
 
 [scriptblock]$btnTBSearchClick = Get-Command $BUTTON_SEARCH_FILE | select -ExpandProperty ScriptBlock
 
 # CLOSE FORM
 [scriptblock]$scriptBtnExit = Get-Command $BUTTON_EXIT_FILE | select -ExpandProperty ScriptBlock
-
-
 #..........................................................
-#==========================================================
 #endregion BUTTON_FUNCTIONS
-
-
-
-
-
-#region PIPELINE_DATA
 #==========================================================
+
+
+
+
+
+#==========================================================
+#region PIPELINE_DATA
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $dataReadySide1 = {
     # Get last item added to ready queue
@@ -132,11 +132,23 @@ $dataReadySide3 = {
     # Get last item added to ready queue
     $lastItem = $Script:drWorker.GetReadyData()
     $script:count++ #This variable is for the progress bar
-    if ($lastItem -ne $null -and $Script:drWorker.Errors.Count-eq 0)
-    {
+    if ($lastItem -ne $null -and $Script:drWorker.Errors.Count-eq 0) {
 	    $parish = $lastItem.Parish
         $rtbResults.AppendText("$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Data for postcode $($lastItem.PostCode)")
-        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Parish:`t$($lastItem.Parish)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') OA:`t$($lastItem.OA)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') COUNCIL:`t$($lastItem.Council)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') LOCALITY:`t$($lastItem.Locality)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') WARD:`t$($lastItem.Ward)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Parish:  `t$($lastItem.Parish)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') IntermediateZone:`t$($lastItem.Intermediate)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Parliament:`t$($lastItem.ScoParm)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') ParlRegion:`t$($lastItem.ScoParmReg)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Parl (UK):`t$($lastItem.UKParm)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Settlement:`t$($lastItem.Settlement)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') UrbanRural:`t$($lastItem.UrbanRural)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Easting:`t$($lastItem.Easting)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Northing:`t$($lastItem.Northing)")
+        $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd_HH:mm:ss') Hectarage:`t$($lastItem.Hectarage)")
         $rtbResults.AppendText("`n`t----------------------------------------")
         $rtbResults.AppendText("`n")
         $rtbResults.ScrollToEnd()    }
@@ -145,45 +157,17 @@ $dataReadySide3 = {
 
 $dataReadyTBSearch = (Get-Command $btnTBSearchData_FILE | select -ExpandProperty Scriptblock)
 #..........................................................
-#==========================================================
 #endregion PIPELINE_DATA
-
-
-
-
-
-#region SCRIPT_CALL_FINISHED
 #==========================================================
+
+
+
+
+
+#==========================================================
+#region SCRIPT_CALL_FINISHED
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $btnSearchDone = (Get-Command $btnSearchDone_FILE | select -ExpandProperty ScriptBlock )
-
-$stateChangedSide1 = {  
-  
-   #$rtbResults.AppendText("`nState: $($Script:drWorker.StateInfo.State)")
-   # Completed,Stopped and Failed have higher enum value than stopping
-   # When pipeline stops it will either be Stopped,Failed or Completed
-   # In this example it does not matter which of the three state changes have
-   # occurred as we simply output the results acheived to that point.
-   # In other cases you may need to add your own clean-up code for the different states.
-   if ($Script:drWorker.StateInfo.State -gt [PipelineState]::Stopping)
-   {
-        if ($Script:drWorker.Results.Count -gt 0) {
-            # enable the button
-	        $btnSide1.IsEnabled = $true
-        }
-        
-        $tbInput.Text = "`n$(Get-Date -f 'yyyy-MM-dd HH:mm:ss')`tErrors: $($Script:drWorker.Errors.Count)"
-        if ($Script:drWorker.Errors.Count -gt 0)
-        {
-            foreach ($err in $Script:drWorker.Errors)
-            {
-                $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd HH:mm:ss')`t$($err.Exception.Message)")
-            }
-        }
-
-	}  
-	
-}
 
 $stateChangedSide2 = {  
   
@@ -210,24 +194,7 @@ $stateChangedSide2 = {
 }
 
 
-$stateChangedSide3 = {  
-  
-   #$rtbResults.AppendText("`nState: $($Script:drWorker.StateInfo.State)")
-   if ($Script:drWorker.StateInfo.State -gt [PipelineState]::Stopping) {
-        if ($Script:drWorker.Results.Count -gt 0) {
-            # enable the button
-	        $btnSide3.IsEnabled = $true
-        }
-        
-        $tbInput.Text = "`n$(Get-Date -f 'yyyy-MM-dd HH:mm:ss')`tErrors: $($Script:drWorker.Errors.Count)"
-        if ($Script:drWorker.Errors.Count -gt 0) {
-            foreach ($err in $Script:drWorker.Errors) {
-                $rtbResults.AppendText("`n$(Get-Date -f 'yyyy-MM-dd HH:mm:ss')`t$($err.Exception.Message)")
-            }
-        }
-
-	} 
-}
+$stateChangedSide3 = (Get-Command $btnSide3Done_FILE| select -ExpandProperty ScriptBlock )
 
 $stateChangedSide4 = {  
   
@@ -242,27 +209,27 @@ $stateChangedSide4 = {
 	} 
 }
 #..........................................................
-#==========================================================
 #endregion SCRIPT_CALL_FINISHED
-
-
-
-
-
-#region CANCEL_SCRIPTBLOCK
 #==========================================================
+
+
+
+
+
+#==========================================================
+#region CANCEL_SCRIPTBLOCK
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 [scriptblock]$btnCancelClick = Get-Command $BUTTON_CANCEL_FILE | select -ExpandProperty ScriptBlock
 #..........................................................
-#==========================================================
 #endregion CANCEL_SCRIPTBLOCK
-
-
-
-
-
-#region BUTTON_CLICKS
 #==========================================================
+
+
+
+
+
+#==========================================================
+#region BUTTON_CLICKS
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 [scriptblock]$btnTBSearchClick = Get-Command $btnTBSearchClick_FILE | select -ExpandProperty ScriptBlock
 
@@ -291,14 +258,14 @@ $stateChangedSide4 = {
 	$Script:drWorker | Invoke-WPFBackgroundWorker 
 }
 #..........................................................
-#==========================================================
 #endregion BUTTON_CLICKS
-
-
-
-
-#region WINDOW_CREATION
 #==========================================================
+
+
+
+
+#==========================================================
+#region WINDOW_CREATION
 #''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 $window = [System.Windows.Window][System.Windows.Markup.XamlReader]::Parse($xaml)
 
@@ -350,5 +317,5 @@ $btnSide4.Add_Click($btnSide4Click)
 # Show window
 $window.ShowDialog() | out-null
 #..........................................................
-#==========================================================
 #endregion WINDOW_CREATION
+#==========================================================
