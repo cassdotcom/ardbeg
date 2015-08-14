@@ -1,5 +1,5 @@
 #region HEADER
-###########################################################
+##########################################################
 # .FILE		: wpfFormAC.ps1
 # .AUTHOR  	: A.Cassidy
 # .DATE    	: 2015-08-06
@@ -32,7 +32,14 @@
 
 
 
-
+#==========================================================
+#region FUNCTION_LIBRARY
+#''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+$funLib = "C:\Users\ac00418\Documents\WindowsPowerShell\FunctionLibrary\FunctionScripts"
+gci $funLib | % {. $_.FullName}
+#..........................................................
+#endregion FUNCTION_LIBRARY
+#==========================================================
 
 #==========================================================
 #region CONSTANTS
@@ -41,32 +48,32 @@
 # To prevent name conflicts you can use the -Prefix switch that will add 'Wpf.' prefix to accelerator.
 add-WpfAccelerators 
 
-$XAML_FILE = "C:\Users\ac00418\Documents\ardbeg\forms\wpfFormAC.xaml"
-$NETWORK_NUMBERS = "C:\Users\ac00418\Documents\ardbeg\data\NETWORKS_NUMBERS.txt"
-$CENSUS_LUA = "C:\Users\ac00418\Documents\ardbeg\data\CENSUS_LUA.txt"
+$wpfForm = Get-IniContent -FilePath "C:\Users\ac00418\Documents\ardbeg\ini\ardbeg.ini"
 
-$BUTTON_EXIT_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnExit.ps1"
+$XAML_FILE = $wpfForm.XAML.FILE
+$NETWORK_NUMBERS = $wpfForm.DATAFILES.NETWORK_NUMBERS
+$CENSUS_LUA = $wpfForm.DATAFILES.CENSUS_LUA
 
-$BUTTON_1_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide1.ps1"
-$BUTTON_2_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide2.ps1"
-$BUTTON_3_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide3.ps1"
-$BUTTON_4_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSide4.ps1"
+$BUTTON_EXIT_FILE = $wpfForm.EXIT.SCRIPT
+$BUTTON_1_FILE = $wpfForm.BUTTON1.SCRIPT
+$BUTTON_2_FILE = $wpfForm.BUTTON2.SCRIPT
+$BUTTON_3_FILE = $wpfForm.BUTTON3.SCRIPT
 
-$btnSide3Done_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide3Data.ps1"
+$btnSide3Done_FILE = $wpfForm.BUTTON3.DONE
+$btnSide1Click_FILE = $wpfForm.BUTTON1.CLICK
+$btnSide2Click_FILE = $wpfForm.BUTTON2.CLICK
+$btnSide3Click_FILE = $wpfForm.BUTTON3.CLICK
 
-$btnSide1Click_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide1Click.ps1"
-$btnSide2Click_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide2Click.ps1"
-$btnSide3Click_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnSide3Click.ps1"
+$BUTTON_SEARCH_FILE = $wpfForm.SEARCH.SCRIPT
+$BUTTON_CANCEL_FILE = $wpfForm.CANCEL.SCRIPT
 
-$BUTTON_SEARCH_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptBtnSearch.ps1"
-$BUTTON_CANCEL_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\scriptbtnCancel.ps1"
-
-$btnTBSearchClick_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnTBSearchClick.ps1"
-$btnTBSearchData_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnTBSearchData.ps1"
-$btnSearchDone_FILE = "C:\Users\ac00418\Documents\ardbeg\scripts\btnTBSearchDone.ps1"
+$btnTBSearchClick_FILE = $wpfForm.SEARCH.CLICK
+$btnTBSearchData_FILE = $wpfForm.SEARCH.DATAREADY
+$btnSearchDone_FILE = $wpfForm.SEARCH.DONE
 #..........................................................
 #endregion CONSTANTS
 #==========================================================
+
 
 
 #==========================================================
