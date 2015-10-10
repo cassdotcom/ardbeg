@@ -1,0 +1,19 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="Window3"
+	x:Name="WOPReporter"
+	Title="Window3"
+	Width="169" Height="398" Background="#FF663232">
+
+	<Grid x:Name="LayoutRoot">
+		<Rectangle Fill="#FFF07C77" Margin="10,120,10,10" Stroke="Black"/>
+		<ComboBox Margin="20,133.723,21,0" VerticalAlignment="Top" RenderTransformOrigin="0.458,0.47"/>
+		<Button Content="Button" Margin="20,175,21,0" VerticalAlignment="Top"/>
+		<Button Content="Button" Margin="20,0,21,98" Height="20.277" VerticalAlignment="Bottom"/>
+		<Rectangle Fill="#FFF07C77" Height="50" Margin="10,10,10,0" Stroke="Black" VerticalAlignment="Top"/>
+		<Button Content="Button" Margin="20,0,21,63" Height="20.277" VerticalAlignment="Bottom"/>
+		<Button x:Name="GREXIT" Content="GREXIT" Margin="20,0,21,18" Height="30" VerticalAlignment="Bottom"/>
+		<Label Content="WOP 15/16" Margin="20,21.723,21,0" VerticalAlignment="Top" Height="28.277" FontFamily="/ardbeg;component/Fonts/#Helvetica LT Std" FontSize="14.667"/>
+	</Grid>
+</Window>
